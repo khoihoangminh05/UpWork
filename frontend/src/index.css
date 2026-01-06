@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+@config "../tailwind.config.js";
+
+@layer base {
+  :root {
+    /* Modern todo app color palette (RGBA) */
+    --background: rgba(249,249,250,1); /* hsl(240 10% 98%) */
+    --background-secondary: rgba(244,243,246,1); /* hsl(245 15% 96%) */
+    --foreground: rgba(50,66,88,1); /* hsl(215 28% 27%) */
+
+    --card: rgba(255,255,255,1); /* hsl(0 0% 100%) */
+    --card-foreground: rgba(50,66,88,1); /* hsl(215 28% 27%) */
+    --card-shadow: rgba(29,41,62,1); /* hsl(218 36% 18%) */
+
+    --popover: rgba(255,255,255,1); /* hsl(0 0% 100%) */
+    --popover-foreground: rgba(50,66,88,1); /* hsl(215 28% 27%) */
+
+    /* Beautiful gradient colors */
+    --primary: rgb(24, 19, 34); /* hsl(258 89% 65%) */
+    --primary-light: rgb(7, 4, 15); /* hsl(255 92% 76%) */
+    --primary-dark: rgb(0, 0, 0); /* hsl(263 69% 50%) */
+    --primary-foreground: rgba(255,255,255,1); /* hsl(0 0% 100%) */
+
+    --secondary: rgb(140, 44, 179); /* hsl(240 5% 96%) */
+    --secondary-foreground: rgb(222, 224, 77); /* hsl(240 6% 10%) */
+
+    --muted: rgba(244,244,245,1); /* hsl(240 5% 96%) */
+    --muted-foreground: rgba(98,116,141,1); /* hsl(215 18% 47%) */
+
+    --accent: rgba(225,243,254,1); /* hsl(204 94% 94%) */
+    --accent-foreground: rgba(0,122,204,1); /* hsl(204 100% 40%) */
+
+    --destructive: rgba(240,66,66,1); /* hsl(0 85% 60%) */
+    --destructive-foreground: rgba(249,249,249,1); /* hsl(0 0% 98%) */
+
+    --success: rgb(51, 211, 110); /* hsl(142 76% 36%) */
+    --success-foreground: rgba(249,249,249,1); /* hsl(0 0% 98%) */
+
+    --info: rgba(66,110,254,1); /* hsl(226 100% 63%) */
+
+    --border: rgba(224,231,239,1); /* hsl(214 32% 91%) */
+    --input: rgba(240,244,248,1); /* hsl(210 40% 96%) */
+    --ring: rgba(134,86,245,1); /* hsl(258 89% 65%) */
+
+    /* Gradients (RGBA stops) */
+    --gradient-primary: linear-gradient(
+      135deg,
+      rgba(166,137,250,1) 0%, /* hsl(255 92% 76%) */
+      rgba(107,40,215,1) 100%  /* hsl(263 69% 50%) */
+    );
+    --gradient-background: linear-gradient(
+      135deg,
+      rgba(249,249,250,1) 0%, /* hsl(240 10% 98%) */
+      rgba(244,243,246,1) 100% /* hsl(245 15% 96%) */
+    );
+    --gradient-card: linear-gradient(
+      135deg,
+      rgba(255,255,255,1) 0%, /* hsl(0 0% 100%) */
+      rgba(252,252,253,1) 100% /* hsl(240 10% 99%) */
+    );
+
+    /* Shadows (rgba with alpha) */
+    --shadow-sm: 0 1px 2px 0 rgba(29,41,62,0.05); /* hsl(218 36% 18% / 0.05) */
+    --shadow-md: 0 4px 6px -1px rgba(29,41,62,0.10),
+                 0 2px 4px -2px rgba(29,41,62,0.10); /* /0.1 */
+    --shadow-lg: 0 10px 15px -3px rgba(29,41,62,0.10),
+                 0 4px 6px -4px rgba(29,41,62,0.10); /* /0.1 */
+    --shadow-glow: 0 0 20px rgba(134,86,245,0.30); /* hsl(258 89% 65% / 0.3) */
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    --radius: 0.5rem;
+
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+  }
+
+  /* dark theme variables (RGBA) */
+  .dark {
+    --background: rgba(7,11,13,1); /* hsl(222.2 84% 4.9%) */
+    --foreground: rgba(248,250,252,1); /* hsl(210 40% 98%) */
+
+    --card: rgba(7,11,13,1); /* same as background dark */
+    --card-foreground: rgba(248,250,252,1);
+
+    --popover: rgba(7,11,13,1);
+    --popover-foreground: rgba(248,250,252,1);
+
+    --primary: rgba(248,250,252,1); /* inverted */
+    --primary-foreground: rgba(43,54,29,1); /* hsl(222.2 47.4% 11.2%) approx */
+
+    --secondary: rgba(30,41,59,1); /* hsl(217.2 32.6% 17.5%) */
+    --secondary-foreground: rgba(248,250,252,1);
+
+    --muted: rgba(30,41,59,1);
+    --muted-foreground: rgba(98,116,141,1); /* hsl(215 20.2% 65.1%) */
+
+    --accent: rgba(30,41,59,1);
+    --accent-foreground: rgba(248,250,252,1);
+
+    --destructive: rgba(127,29,29,1); /* hsl(0 62.8% 30.6%) */
+    --destructive-foreground: rgba(248,250,252,1);
+
+    --border: rgba(30,41,59,1);
+    --input: rgba(30,41,59,1);
+    --ring: rgba(203,213,225,1); /* hsl(212.7 26.8% 83.9%) */
+
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.439 0 0);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+:root {
+  --sidebar: hsl(0 0% 98%);
+  --sidebar-foreground: hsl(240 5.3% 26.1%);
+  --sidebar-primary: hsl(240 5.9% 10%);
+  --sidebar-primary-foreground: hsl(0 0% 98%);
+  --sidebar-accent: hsl(240 4.8% 95.9%);
+  --sidebar-accent-foreground: hsl(240 5.9% 10%);
+  --sidebar-border: hsl(220 13% 91%);
+  --sidebar-ring: hsl(217.2 91.2% 59.8%);
+}
+
+.dark {
+  --sidebar: hsl(240 5.9% 10%);
+  --sidebar-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-primary: hsl(224.3 76.3% 48%);
+  --sidebar-primary-foreground: hsl(0 0% 100%);
+  --sidebar-accent: hsl(240 3.7% 15.9%);
+  --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-border: hsl(240 3.7% 15.9%);
+  --sidebar-ring: hsl(217.2 91.2% 59.8%);
+}
+
+@theme inline {
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
