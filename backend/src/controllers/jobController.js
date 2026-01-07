@@ -161,10 +161,12 @@ exports.getMyCompletedJobs = async (req, res) => {
 };
 
 exports.getWorkerJob = async (req, res) => {
+    
     const jobs = await Job.find({ 
         worker: req.user.id,
         status: 'In progress' 
-    }).populate('worker', 'fullName').populate('category', 'name image').populate('client', 'fullName').sort({ createdAt: -1 });
+    }).populate('worker', 'fullName').populate('category').populate('client', 'fullName').sort({ createdAt: -1 });
+    console.log(jobs);
     res.json(jobs);
 };
 
