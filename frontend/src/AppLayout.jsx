@@ -5,7 +5,7 @@ import { NavigationBarSection } from './components/NavigationBarSection';
 import { Button } from './components/ui/button';
 import UserSupportChat from './components/UserSupportChat';
 import io from 'socket.io-client';
-const socket = io.connect("http://localhost:5001");
+const socket = io.connect("https://upwork-th3j.onrender.com");
 
 const AppLayout = ({ children }) => {
   const { user } = useAuth();

@@ -5,7 +5,7 @@ import api from '@/config/axios';
 import { io } from 'socket.io-client';
 import { useAuth } from '@/context/AuthContext';
 import multiavatar from '@multiavatar/multiavatar';
-const socket = io.connect("http://localhost:5001");
+const socket = io.connect("https://upwork-th3j.onrender.com");
 const AdminSupportDashboard = () => {
   const { user } = useAuth();
   let currentUser = user;

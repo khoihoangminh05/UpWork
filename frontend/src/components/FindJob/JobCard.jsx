@@ -28,13 +28,14 @@ const JobCard = ({job, handleJobChange}) => {
       toast.error("Nhận việc thất bại!")
      }
   }
+  console.log(job);
   return (
     <Card className="flex p-3 group hover:shadow-glow text-muted-foreground">
         <div className="flex flex-1 flex-col gap-4 text-md w-full">
            <div className="flex items-center justify-left gap-10">
              <p> {job.title} </p>
              <Badge variant="outline" className="p-2">
-               {job.category.name}  {job.category.image}
+               {job?.category?.name}  {job?.category?.image}
              </Badge> 
            </div >
            <Separator className="bg-gray-200" /> 
