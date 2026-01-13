@@ -109,6 +109,7 @@ exports.getNearbyJobs = async (req, res) => {
 
         const jobs = await Job.find({ status: 'Open' })
             .populate('client', 'fullName avatar')
+            .populate('category', 'name image')
             .sort({ createdAt: -1 });
 
         res.json(jobs);

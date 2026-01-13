@@ -61,11 +61,7 @@ const JobCard = ({ job, handleJobChange }) => {
              <div className="flex items-start gap-3 flex-1">
 
                 <div className="w-12 h-12 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center flex-shrink-0 overflow-hidden">
-                    {job.category?.image ? (
-                        <img src={job.category.image} alt={job.category.name} className="w-full h-full object-cover" />
-                    ) : (
-                        <Briefcase className="w-6 h-6 text-purple-500" />
-                    )}
+                    {job.category.image}
                 </div>
 
                 <div>
