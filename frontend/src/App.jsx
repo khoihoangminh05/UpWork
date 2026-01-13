@@ -3,14 +3,10 @@ import { LoginPage } from "./pages/LoginPage.jsx";
 import { HomePage } from "./pages/HomePage.jsx";
 import { FindJobPage } from "./pages/FindJobPage.jsx";
 import {BrowserRouter, Routes, Route } from "react-router-dom";
-import { NavigationBarSection } from "./components/NavigationBarSection.jsx";
-import { Footer } from "./components/Footer.jsx";
 import { Toaster } from "sonner";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import ProtectedRoute from "./context/ProtectedRoute.jsx";
 import { PostJobPage } from "./pages/PostJobPage.jsx";
-import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar.jsx";
-import  Sidebar  from "./components/AppSidebar.jsx";
 import AppLayout from "./AppLayout.jsx";
 import PortfolioPage from "./pages/PortfolioPage.jsx";
 import AdminRoute from "./context/AdminRoute.jsx";
@@ -79,7 +75,6 @@ export const App = () => {
                     }
                   />
                 </Routes>
-                <Footer />
               </main>
 
               </AppLayout> 
