@@ -44,8 +44,6 @@ const JobCard = ({ job, handleJobChange }) => {
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // ... (Giữ nguyên các hàm xử lý API: updateJob, deleteJob, handleCompleteJob)
   const updateJob = async () => {
     try {
       await api.put("/jobs/" + job._id, { description: newDescription });
@@ -85,13 +83,9 @@ const JobCard = ({ job, handleJobChange }) => {
   };
 
   return (
-    // --- THAY ĐỔI 1: CSS CỦA CARD ---
-    // 1. Dùng '!overflow-visible' để ép thẻ Card không được cắt nội dung con.
-    // 2. Bỏ các class 'transform', 'scale', 'translate' để không tạo hệ toạ độ riêng.
-    // 3. Dùng 'relative z-0' để làm nền tảng.
+   
     <Card className="relative z-0 bg-white border border-gray-100 shadow-sm mb-4 !overflow-visible">
         
-        {/* Header Content */}
         <div className="p-5 flex flex-col gap-4">
             <div className="flex justify-between items-start">
                 <div className="flex items-center gap-3">
