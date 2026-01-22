@@ -60,6 +60,8 @@ app.use('/api/jobs', require('./src/routes/jobs.js'));
 app.use('/api/category', require('./src/routes/category.js'));
 app.use('/api/wallet', require('./src/routes/wallet.js'));
 app.use('/api/chat', require('./src/routes/chat.js'));
+app.use('/api/auto-assign', require('./src/routes/autoAssign.js'));
+app.use('/api/worker', require('./src/routes/worker.js'));
 
 const PORT = process.env.PORT || 5001;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));

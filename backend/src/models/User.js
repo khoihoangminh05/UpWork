@@ -23,7 +23,16 @@ const UserSchema = new mongoose.Schema({
         type: Number, 
         default: 0, 
         min: 0 
-    }
+    },
+    skills: [{ type: String }], 
+
+    availability: [{
+        dayOfWeek: { type: Number, min: 0, max: 6 }, 
+        startTime: { type: String }, 
+        endTime: { type: String }    
+    }],
+
+    currentStatus: { type: String, enum: ['available', 'busy'], default: 'available' }
 });
 
 UserSchema.pre('save', async function () {

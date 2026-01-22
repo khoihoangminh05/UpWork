@@ -1,14 +1,14 @@
 import React from "react";
-import { FILTER_OPTIONS } from "@/lib/constants"; // Hoặc import từ file của bạn
-import { Filter, X, Check } from "lucide-react"; // Icon cho đẹp
+import { FILTER_OPTIONS } from "@/lib/constants"; 
+import { Filter, X, Check } from "lucide-react"; 
 
 export const JobFilterSection = ({ currentFilters, onFilterChange, onApply, onReset }) => {
   
   const handleToggle = (type, value) => {
     const currentValues = currentFilters[type] || [];
     const newValues = currentValues.includes(value)
-      ? currentValues.filter((item) => item !== value) // Bỏ chọn
-      : [...currentValues, value]; // Chọn thêm
+      ? currentValues.filter((item) => item !== value) 
+      : [...currentValues, value]; 
 
     onFilterChange(type, newValues);
   };
@@ -47,7 +47,6 @@ export const JobFilterSection = ({ currentFilters, onFilterChange, onApply, onRe
     <section className="w-full bg-white border-b border-gray-100 shadow-sm sticky top-20 z-30">
       <div className="container mx-auto px-4 lg:px-8 py-6">
         
-        {/* --- Header & Actions --- */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-purple-100 text-purple-600 rounded-lg">
@@ -60,7 +59,7 @@ export const JobFilterSection = ({ currentFilters, onFilterChange, onApply, onRe
           </div>
 
           <div className="flex items-center gap-3 w-full md:w-auto">
-             {/* Nút Reset (Chỉ hiện khi có filter) */}
+
              <button
                 type="button"
                 onClick={onReset}
@@ -68,8 +67,6 @@ export const JobFilterSection = ({ currentFilters, onFilterChange, onApply, onRe
              >
                 <X className="w-4 h-4" /> Xóa lọc
              </button>
-
-             {/* Nút Apply */}
              <button
                 type="button"
                 onClick={onApply}
@@ -79,8 +76,6 @@ export const JobFilterSection = ({ currentFilters, onFilterChange, onApply, onRe
              </button>
           </div>
         </div>
-
-        {/* --- Filter Options Grid --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {renderFilterGroup("Danh mục dịch vụ", "categories", FILTER_OPTIONS.categories)}
           {renderFilterGroup("Hình thức trả lương", "paymentTypes", FILTER_OPTIONS.paymentTypes)}

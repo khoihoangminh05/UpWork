@@ -1,94 +1,35 @@
-import { Card } from '@/components/ui/card'
-import React, { useEffect, useState } from 'react'
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
-import api from '@/config/axios';
-import { toast } from 'sonner';
-import timeAgo from '@/lib/time';
-import { Button } from '../ui/button';
-import { DepositDialog } from './DepositDialog';
+import React from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import AdminUserTable from './AdminUserTable'; // Component bảng user cũ của bạn
+import JobAssignmentDashboard from './JobAssignmentDashboard'; // Component mới vừa tạo
 
 const ManagementSection = () => {
-    const [users, setUsers] = useState([]);
+    return (
+        <div className="flex-1 p-8 overflow-y-auto h-screen bg-white">
+            <div className="mb-8">
+                <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+                <p className="text-gray-500">Xin chào, chúc bạn một ngày làm việc hiệu quả.</p>
+            </div>
 
-    const fetchData = async () => {
-      try{ 
-         const res = await api.get('/auth');
-         console.log(res);
-         toast.success("Lấy danh sách thông tin user thành công")
-         setUsers(res.data);
-      }
-      catch(e) {
-        console.log(e);
-        toast.error("Lỗi khi lấy thông tin user")
-      }
-    }
+            {/* HỆ THỐNG TABS */}
+            <Tabs defaultValue="users" className="w-full space-y-6">
+                <TabsList className="grid w-full grid-cols-2 max-w-[400px]">
+                    <TabsTrigger value="users">Quản lý Người dùng</TabsTrigger>
+                    <TabsTrigger value="jobs">Phân phối Việc làm</TabsTrigger>
+                </TabsList>
 
-    useEffect(() => {
-       fetchData();
-    },[]);
-   
-  let total = 0;
-  users.forEach((e) => total += e.walletBalance)
+                {/* TAB 1: USER (Cũ) */}
+                <TabsContent value="users" className="space-y-4">
+                    <AdminUserTable />
+                </TabsContent>
 
-  return (
-    <Card className="m-2 p-6 w-full "> 
-        <Table>
-        <TableCaption>A list of Users.</TableCaption>
-        <TableHeader>
-            <TableRow>
-            <TableHead>Email</TableHead>
-            <TableHead>FullName</TableHead>
-            <TableHead>Role</TableHead>
-            <TableHead>Registered</TableHead>
-            <TableHead>Wallet Balance</TableHead>
-            <TableHead>Deposit</TableHead>
-            </TableRow>
-        </TableHeader>
-        <TableBody>
-        {users.map((user) => (
-          <TableRow key={user.email}>
-            <TableCell className="font-medium h-13">{user.email}</TableCell>
-            <TableCell>{user.fullName}</TableCell>
-            <TableCell>{user.role}</TableCell>
-            <TableCell>{timeAgo(user.createdAt)}</TableCell>
-            <TableCell>{user.walletBalance} VND</TableCell>
-            { (user.role === "worker") &&
-              <TableCell>
-              <DepositDialog
-               trigger={ 
-                  <Button 
-                    className="w-10 h-9"
-                    variant="outline"
-                  >
-                    +/-
-                  </Button>}
-                user={user}
-                onChange={fetchData}
-              >
-              </DepositDialog>
-            </TableCell>
-          }
-          </TableRow>
-        ))}
-        </TableBody>
-        <TableFooter>
-            <TableRow>
-            <TableCell colSpan={4}>Total</TableCell>
-            <TableCell> {total} VNĐ</TableCell>
-            </TableRow>
-        </TableFooter>
-        </Table>
-    </Card>
-  )
-}
+                {/* TAB 2: JOB (Mới) */}
+                <TabsContent value="jobs" className="space-y-4">
+                    <JobAssignmentDashboard />
+                </TabsContent>
+            </Tabs>
+        </div>
+    );
+};
 
-export default ManagementSection
+export default ManagementSection;
